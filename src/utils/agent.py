@@ -67,7 +67,6 @@ def get_agent_executor():
 
     memory = ConversationBufferMemory(memory_key="chat_history", return_messages=True)
     agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=True, handle_parsing_errors=True, memory=memory)
-    # agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=True, handle_parsing_errors=True)
 
     return agent_executor
 
