@@ -16,17 +16,18 @@ class Calculator(BaseTool):
 
     def _arun(self, radius: int):
         raise NotImplementedError("This tool is not support async.")
-    
+
 
 def get_tools():
-    wikipedia = WikipediaQueryRun(api_wrapper=WikipediaAPIWrapper(top_k_results=1, doc_content_chars_max=2500))
+    wikipedia = WikipediaQueryRun(
+        api_wrapper=WikipediaAPIWrapper(top_k_results=1, doc_content_chars_max=2500)
+    )
 
     # create wikipedia tool
     wikipedia_tool = Tool(
         name="wikipedia",
         description="Never search for more than one concept at a single step. If you need to compare two concepts, search for each one individually. Syntax: string with a simple concept",
-        func=wikipedia.run
-
+        func=wikipedia.run,
     )
 
     calculator_tool = Calculator()
@@ -34,6 +35,7 @@ def get_tools():
     tools = [wikipedia_tool, calculator_tool]
 
     return tools
+
 
 if __name__ == "__main__":
     tools = get_tools()
